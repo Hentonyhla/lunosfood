@@ -1,0 +1,31 @@
+<mat-card class="card shadow p-3 mb-5 bg-white rounded">
+    <mat-card-title>
+        <h2 class="text-center title-card">Editar Grupo</h2>
+        <a class="text-success float-right btn btn-lg rounded-circle rounded-lg" routerLink="/grupos-list">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+    </mat-card-title>
+
+    <mat-card-content>
+        <form [formGroup]="formulario" autocomplete="off">
+
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="50%" appearance="fill" class="mr-4">
+                    <mat-label>Nome</mat-label>
+                    <input matInput id="nome" formControlName="nome">
+                </mat-form-field>
+                <mat-form-field fxFlex="50%" appearance="outline" floatLabel="always" class="mr-4">
+                    <mat-label>Ativo</mat-label>
+                    <mat-select id="ativo" formControlName="ativo">
+                        <mat-option value="Sim">Sim</mat-option>
+                        <mat-option value="Nao">Nâo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+           
+        </form>
+        <button (click)="salvar()" class="btn btn-success" [disabled]="!formulario.valid" onclick="this.disabled = true;" >
+            <mat-icon>save</mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>

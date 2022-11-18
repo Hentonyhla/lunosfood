@@ -1,0 +1,98 @@
+<mat-card class="card shadow p-3 mb-5 bg-white rounded">
+    <mat-card-title>
+        <h2 class="text-center title-card">Novo Funcionário</h2>
+        <a class="text-success float-right btn btn-lg rounded-circle rounded-lg" routerLink="/funcionarios-list">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+    </mat-card-title>
+
+    <mat-card-content>
+        <form #f="ngForm" [formGroup]="formulario" autocomplete="off">
+
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="50%" appearance="fill" class="mr-4">
+                    <mat-label>Nome</mat-label>
+                    <input matInput id="nome" formControlName="nome" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="50%" appearance="fill" class="mr-4">
+                    <mat-label>Sobrenome</mat-label>
+                    <input matInput id="sobrenome" formControlName="sobrenome" autocomplete="off">
+                </mat-form-field>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                    <mat-label>Nome Social</mat-label>
+                    <input matInput id="nome_social" formControlName="nome_social" autocomplete="off">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="15%" appearance="fill" class="mr-4">
+                    <mat-label>CPF</mat-label>
+                    <input matInput id="cpf" formControlName="cpf" autocomplete="off" mask="CPF_CNPJ">
+                </mat-form-field>
+                
+                <mat-form-field fxFlex="10.8%" appearance="fill" class="mr-4">
+                    <mat-label>RG</mat-label>
+                    <input matInput id="rg" formControlName="rg" autocomplete="off">
+                </mat-form-field>
+
+               
+
+                <mat-form-field fxFlex="15%" appearance="fill" class="mr-4">
+                    <mat-label>Telefone</mat-label>
+                    <input matInput id="telefone" formControlName="telefone" autocomplete="off" mask="(00)00000-0000">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                    <mat-label>CEP</mat-label>
+                    <input matInput id="cep" formControlName="cep" (blur)="buscaCep($any($event).target.value, f)"
+                        autocomplete="off" mask="00000-000">
+                </mat-form-field>
+                <mat-form-field fxFlex="37.2%" appearance="fill" class="mr-4">
+                    <mat-label>Rua</mat-label>
+                    <input matInput id="logradoura" formControlName="logradouro" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="15%" appearance="fill" class="mr-4">
+                    <mat-label>Número</mat-label>
+                    <input matInput id="numero" formControlName="numero" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="15%" appearance="fill" class="mr-4">
+                    <mat-label>Bairro</mat-label>
+                    <input matInput id="bairro" formControlName="bairro" autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                    <mat-label>UF</mat-label>
+                    <input matInput id="uf" formControlName="uf" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="27.2%" appearance="fill" class="mr-4">
+                    <mat-label>Município</mat-label>
+                    <input matInput id="cidade" formControlName="cidade" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="31.5%" appearance="fill" floatLabel="always" class="mr-4">
+                    <mat-label>Ativo</mat-label>
+                    <mat-select id="ativo" formControlName="ativo">
+                        <mat-option *ngFor="let ativo of ativos" [value]="ativo">{{ativo}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column" >
+            <mat-form-field fxFlex="30" appearance="fill" class="mr-4 ">
+                <mat-label>Data Nascimento</mat-label>
+                <input id="data_nascimento" formControlName="data_nascimento" matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon class="float-right d-flex justify-content-center" matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+            </div>
+        </form>
+        <button (click)="salvar()" class="btn btn-success" [disabled]="!formulario.valid"
+            onclick="this.disabled = true;">
+            <mat-icon>save</mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>

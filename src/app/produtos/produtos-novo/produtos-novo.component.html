@@ -1,0 +1,24 @@
+<div class=" mt-5">
+  <h1 class="mb-3 text-center">Adicionar Produtos</h1>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group mb-3">
+        <label for="nome" class="mb-2">Nome</label>
+        <input type="text" class="form-control" id="nome" required [(ngModel)]="produtos.nome" name="nome" />
+      </div>
+      <div class="form-group mb-3">
+        <label for="descricao" class="mb-2">Descricao</label>
+        <input class="form-control" id="descricao" required [(ngModel)]="produtos.descricao" name="descricao" />
+      </div>
+      <div class="form-group mb-3">
+        <label for="preco" class="mb-2">Preço</label>
+        <input class="form-control" id="preco" required [(ngModel)]="produtos.preco" name="preco" />
+      </div>
+      <button (click)="saveProdutos()" class="btn btn-success">Submit</button>
+    </div>
+    <div *ngIf="submitted">
+      <h4>Produtos was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newProdutos()">Add</button>
+    </div>
+  </div>
+</div>

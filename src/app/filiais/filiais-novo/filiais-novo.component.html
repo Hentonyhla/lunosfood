@@ -1,0 +1,126 @@
+<mat-card class="card shadow p-3 mb-5 bg-white rounded">
+    <mat-card-title>
+        <h2 class="text-center title-card">Nova Filial</h2>
+        <a class="text-success float-right btn btn-lg rounded-circle rounded-lg" routerLink="/filiais-list">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+    </mat-card-title>
+
+    <mat-card-content>
+        <form #f="ngForm" [formGroup]="formulario" autocomplete="off">
+
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                    <mat-label>CNPJ</mat-label>
+                    <input matInput id="cnpj" formControlName="cnpj" (blur)="buscaCnpj($any($event).target.value, f)">
+                </mat-form-field>
+                <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                    <mat-label>CEP</mat-label>
+                    <input matInput id="cep" formControlName="cep" (blur)="buscaCep($any($event).target.value, f)"
+                        autocomplete="off" mask="00000-000">
+                </mat-form-field>
+                <mat-form-field fxFlex="30%" appearance="fill" class="mr-4">
+                    <mat-label>Razão Social</mat-label>
+                    <input matInput id="razao_social" formControlName="razao_social" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="30%" appearance="fill" class="mr-4">
+                    <mat-label>Nome Fantasia</mat-label>
+                    <input matInput id="nome_fantasia" formControlName="nome_fantasia" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                    <mat-label>Inscrição Estadual</mat-label>
+                    <input matInput id="inscricao_estadual" formControlName="inscricao_estadual" autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+     
+                <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                    <mat-label>Rua</mat-label>
+                    <input matInput id="logradoura" formControlName="logradouro" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                    <mat-label>UF</mat-label>
+                    <input matInput id="uf" formControlName="uf" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="30%" appearance="fill" class="mr-4">
+                    <mat-label>Município</mat-label>
+                    <input matInput id="cidade" formControlName="cidade" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                    <mat-label>Número</mat-label>
+                    <input matInput id="numero" formControlName="numero" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                    <mat-label>Código IBGE</mat-label>
+                    <input matInput id="ibge" formControlName="ibge" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                    <mat-label>Bairro</mat-label>
+                    <input matInput id="bairro" formControlName="bairro" autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+
+                <mat-form-field fxFlex="60%" appearance="fill" class="mr-4">
+                    <mat-label>Complemento</mat-label>
+                    <input matInput id="bairro" formControlName="complemento" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                    <mat-label>Código País</mat-label>
+                    <input matInput id="codigo_pais" formControlName="codigo_pais" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                    <mat-label>País</mat-label>
+                    <input matInput id="pais" formControlName="pais" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="20%" appearance="fill" floatLabel="always" class="mr-4">
+                    <mat-label>Ativo</mat-label>
+                    <mat-select id="ativo" formControlName="ativo">
+                        <mat-option *ngFor="let ativo of ativos" [value]="ativo">{{ativo}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+
+                <mat-form-field fxFlex="60%" appearance="fill" class="mr-4">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput id="email" formControlName="email" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="15%" appearance="fill" class="mr-4">
+                    <mat-label>Telefone</mat-label>
+                    <input matInput id="telefone" formControlName="telefone" autocomplete="off" mask="(00)0000-0000">
+                </mat-form-field>
+                <mat-form-field fxFlex="15%" appearance="fill" class="mr-4">
+                    <mat-label>Celular</mat-label>
+                    <input matInput id="celular" formControlName="celular" autocomplete="off" mask="(00)00000-0000">
+                </mat-form-field>
+                <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                    <mat-label>Tipo</mat-label>
+                    <input matInput id="tipo" formControlName="tipo" autocomplete="off">
+                </mat-form-field>
+              
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+
+                <mat-form-field fxFlex="50" appearance="fill" class="mr-4">
+                    <mat-label>Porte</mat-label>
+                    <input matInput id="porte" formControlName="porte" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field fxFlex="21.3" appearance="fill" floatLabel="always" class="mr-4">
+                    <mat-label>Tipo da Empresa</mat-label>
+                    <mat-select id="tipo_empresa" formControlName="tipo_empresa">
+                        <mat-option *ngFor="let tipo_empresa of tipo_empresa" [value]="tipo_empresa">{{tipo_empresa}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="30" appearance="fill" class="mr-4">
+                    <mat-label>Natureza Jurídica</mat-label>
+                    <input matInput id="natureza_juridica" formControlName="natureza_juridica" autocomplete="off">
+                </mat-form-field>
+            </div>
+        </form>
+        <button (click)="salvar()" class="btn btn-success" [disabled]="!formulario.valid" onclick="this.disabled = true;" >
+            <mat-icon>save</mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>

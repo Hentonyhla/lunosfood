@@ -1,0 +1,16 @@
+mat-card{
+    width: 900px;
+    margin-top: 60px;
+}
+mat-sidenav-container{
+    height: calc(205vh - 115vh);
+}
+mat-sidenav{
+    width: 200px;
+    background-color: rgb(223, 223, 223);
+}
+
+.list{
+    text-decoration: none !important;
+    color: black;
+}

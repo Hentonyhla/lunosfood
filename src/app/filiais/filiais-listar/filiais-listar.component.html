@@ -1,0 +1,53 @@
+<div class="w-100">
+    <mat-card class="card shadow p-3 mb-5 bg-white rounded">
+      <mat-card-title>
+        <h2 class="float-left">Lista de Filiais</h2>
+        <a class="text-success float-right btn btn-lg rounded-circle rounded-lg" (click)="Novo()"><mat-icon>add_circle_outline</mat-icon></a>
+      </mat-card-title>
+      <div fxLayout="column" fxLayoutAlign="center">
+        <div class="col-12">
+          <mat-form-field appearance="legacy">
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="applyFilter($event)" #input>
+          </mat-form-field>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="razao_social">
+              <th mat-header-cell *matHeaderCellDef> Razão Social </th>
+              <td class="text-uppercase" mat-cell *matCellDef="let filiais"> {{ filiais.razao_social }} </td>
+            </ng-container>
+            <ng-container matColumnDef="nome_fantasia">
+              <th mat-header-cell *matHeaderCellDef> Nome Fantasia </th>
+              <td class="text-uppercase" mat-cell *matCellDef="let filiais"> {{ filiais.nome_fantasia }} </td>
+            </ng-container>
+            <ng-container matColumnDef="cnpj" >
+              <th mat-header-cell *matHeaderCellDef> CNPJ </th>
+             <td mat-cell *matCellDef="let filiais"> {{ filiais.cnpj  | mask: 'CPF_CNPJ' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="tipo">
+                <th mat-header-cell *matHeaderCellDef> Tipo</th>
+                <td class="text-uppercase" mat-cell *matCellDef="let filiais"> {{ filiais.tipo }} </td>
+              </ng-container>
+              <ng-container matColumnDef="telefone">
+                <th mat-header-cell *matHeaderCellDef> Telefone</th>
+                <td mat-cell *matCellDef="let filiais"> {{ filiais.telefone | mask: '(00)0000-0000'}} </td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">Não foram encontrados resultados com "{{input.value}}"</td>
+            </tr>
+            <ng-container matColumnDef="detalhes">
+              <th mat-header-cell *matHeaderCellDef> Ações </th>
+              <td mat-cell *matCellDef="let filiais">
+                <a routerLink="/filiais-edit/{{filiais.id}}" class="edit">
+                    <mat-icon>edit</mat-icon>
+                  </a>
+                <a (click)="delete(filiais.id)" class="delete">
+                    <mat-icon>remove_circle_outline</mat-icon>
+                  </a>
+              </td>
+            </ng-container>
+          </table>
+          <mat-paginator [length]="10" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+        </div>
+      </div>

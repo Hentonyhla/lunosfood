@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <mat-toolbar>
+        <span>Menu</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon">
+            <mat-icon (click)="opened=!opened">menu</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav [(opened)]="opened" mode="side">
+            <mat-accordion>
+
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-description>
+                            Cadastros
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a class="text-dark" routerLink="/produtos-list">Produtos</a></li>
+                        <li class="list-group-item"><a class="text-dark" routerLink="/funcionarios-list">Funcionários</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Clientes</a></li>
+                        <li class="list-group-item"><a class="text-dark" routerLink="/fornecedores-list">Fornecedores</a></li>
+                        <li class="list-group-item"><a class="text-dark" routerLink="/aliquotas-list">Aliquotas</a></li>
+                        <li class="list-group-item"><a class="text-dark" routerLink="/grupos-list">Grupos</a></li>
+                        <li class="list-group-item"><a class="text-dark" routerLink="/aliquotas-int-list">Aliquotas Interestaduais</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">NCM</a></li>
+                    </ul>
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle multi="false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-description>
+                            Movimentação
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a class="text-dark" href="">NF-e</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">NFC-e - PDV</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Compras</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Devolução Fornecedor</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Devolução Cliente</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Entregas</a></li>
+                    </ul>
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle multi="false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-description>
+                            Financeiro
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a class="text-dark" href="">Recebimentos</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Pagamentos</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Bancos</a></li>
+                    </ul>
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-description>
+                            Gerais
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a class="text-dark" routerLink="/filiais-list">Filiais</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Configurações</a></li>
+                        <li class="list-group-item"><a class="text-dark" href="">Checar Atualizações</a></li>
+                    </ul>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</body>
+
+</html>
+

@@ -1,0 +1,6 @@
+input:focus-visible {
+    border-color: black
+}
+input::selection{
+   border-color: tomato;
+}
