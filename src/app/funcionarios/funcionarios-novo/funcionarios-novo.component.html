@@ -35,9 +35,14 @@
                     <mat-label>RG</mat-label>
                     <input matInput id="rg" formControlName="rg" autocomplete="off">
                 </mat-form-field>
-
+                <mat-form-field fxFlex="30" appearance="fill" class="mr-4">
+                    <mat-label>Data Nascimento</mat-label>
+                    <input id="data_nascimento" formControlName="data_nascimento" matInput [matDatepicker]="picker"fxLayoutAlign="center start">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker" fxLayoutAlign="end" class="calendar">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
                
-
                 <mat-form-field fxFlex="15%" appearance="fill" class="mr-4">
                     <mat-label>Telefone</mat-label>
                     <input matInput id="telefone" formControlName="telefone" autocomplete="off" mask="(00)00000-0000">
@@ -57,7 +62,7 @@
                     <mat-label>Número</mat-label>
                     <input matInput id="numero" formControlName="numero" autocomplete="off">
                 </mat-form-field>
-                <mat-form-field fxFlex="15%" appearance="fill" class="mr-4">
+                <mat-form-field fxFlex="13.7%" appearance="fill" class="mr-4">
                     <mat-label>Bairro</mat-label>
                     <input matInput id="bairro" formControlName="bairro" autocomplete="off">
                 </mat-form-field>
@@ -71,23 +76,13 @@
                     <mat-label>Município</mat-label>
                     <input matInput id="cidade" formControlName="cidade" autocomplete="off">
                 </mat-form-field>
-                <mat-form-field fxFlex="31.5%" appearance="fill" floatLabel="always" class="mr-4">
+                <mat-form-field fxFlex="30.2%" appearance="fill" floatLabel="always" class="mr-4">
                     <mat-label>Ativo</mat-label>
                     <mat-select id="ativo" formControlName="ativo">
                         <mat-option *ngFor="let ativo of ativos" [value]="ativo">{{ativo}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
-            </div>
-            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column" >
-            <mat-form-field fxFlex="30" appearance="fill" class="mr-4 ">
-                <mat-label>Data Nascimento</mat-label>
-                <input id="data_nascimento" formControlName="data_nascimento" matInput [matDatepicker]="picker">
-                <mat-datepicker-toggle matIconSuffix [for]="picker">
-                    <mat-icon class="float-right d-flex justify-content-center" matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                </mat-datepicker-toggle>
-                <mat-datepicker touchUi #picker></mat-datepicker>
-            </mat-form-field>
             </div>
         </form>
         <button (click)="salvar()" class="btn btn-success" [disabled]="!formulario.valid"

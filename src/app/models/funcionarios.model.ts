@@ -13,4 +13,5 @@ export interface Funcionarios {
     uf: string;
     data_nascimento: Date;
     telefone: string;
+    ativo: string;
 }
