@@ -13,4 +13,8 @@ export class GeraisService {
   buscaReceita(cnpj: string) {
     return this.http.jsonp(`https://receitaws.com.br/v1/cnpj/${cnpj}`, 'callback')
   }
+  buscaNCM(codigoNcm: string){
+    return this.http.get(`http://localhost:3000/listaNcm/${codigoNcm}`)
+  }
 }
+

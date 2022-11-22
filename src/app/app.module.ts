@@ -20,10 +20,11 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -53,9 +54,9 @@ import { AliqInterestaduaisNovoComponent } from './aliq-interestaduais/aliq-inte
 import { FuncionariosEditarComponent } from './funcionarios/funcionarios-editar/funcionarios-editar.component';
 import { FuncionariosListarComponent } from './funcionarios/funcionarios-listar/funcionarios-listar.component';
 import { FuncionariosNovoComponent } from './funcionarios/funcionarios-novo/funcionarios-novo.component';
-
-
-
+import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
+import { ClientesListarComponent } from './clientes/clientes-listar/clientes-listar.component';
+import { ClientesNovoComponent } from './clientes/clientes-novo/clientes-novo.component';
 
 
 @NgModule({
@@ -81,7 +82,11 @@ import { FuncionariosNovoComponent } from './funcionarios/funcionarios-novo/func
     AliqInterestaduaisEditarComponent,
     FuncionariosNovoComponent,
     FuncionariosListarComponent,
-    FuncionariosEditarComponent
+    FuncionariosEditarComponent,
+    ClientesEditarComponent,
+    ClientesListarComponent,
+    ClientesNovoComponent,
+    
 
   ],
   imports: [
@@ -110,12 +115,14 @@ import { FuncionariosNovoComponent } from './funcionarios/funcionarios-novo/func
     MatProgressSpinnerModule,
     HttpClientJsonpModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatRadioModule
 
 
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
   ],
   bootstrap: [AppComponent],
   schemas: [

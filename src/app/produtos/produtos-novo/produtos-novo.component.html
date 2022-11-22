@@ -1,24 +1,194 @@
-<div class=" mt-5">
-  <h1 class="mb-3 text-center">Adicionar Produtos</h1>
-  <div class="submit-form">
-    <div *ngIf="!submitted">
-      <div class="form-group mb-3">
-        <label for="nome" class="mb-2">Nome</label>
-        <input type="text" class="form-control" id="nome" required [(ngModel)]="produtos.nome" name="nome" />
-      </div>
-      <div class="form-group mb-3">
-        <label for="descricao" class="mb-2">Descricao</label>
-        <input class="form-control" id="descricao" required [(ngModel)]="produtos.descricao" name="descricao" />
-      </div>
-      <div class="form-group mb-3">
-        <label for="preco" class="mb-2">Preço</label>
-        <input class="form-control" id="preco" required [(ngModel)]="produtos.preco" name="preco" />
-      </div>
-      <button (click)="saveProdutos()" class="btn btn-success">Submit</button>
-    </div>
-    <div *ngIf="submitted">
-      <h4>Produtos was submitted successfully!</h4>
-      <button class="btn btn-success" (click)="newProdutos()">Add</button>
-    </div>
-  </div>
-</div>
+<mat-card class="card shadow p-3 mb-5 bg-white rounded">
+    <mat-card-title>
+        <h2 class="text-center title-card">Nova Aliquota</h2>
+        <a class="text-success float-right btn btn-lg rounded-circle rounded-lg" routerLink="/aliquotas-list">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+    </mat-card-title>
+
+    <mat-card-content>
+        <form [formGroup]="formulario" autocomplete="off">
+
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="nome" formControlName="nome">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="descricao" formControlName="descricao">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="cst" formControlName="cst">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="codigoNCM" formControlName="codigoNCM">
+                </mat-form-field>
+            </div> <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="aliquota" formControlName="aliquota">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="cest" formControlName="cest">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="origem" formControlName="origem">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="csosn" formControlName="csosn">
+                </mat-form-field>
+            </div>
+             <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="unidade" formControlName="unidade">
+                </mat-form-field>
+            </div>
+             <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="observacao" formControlName="observacao">
+                </mat-form-field>
+            </div> <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="codigo_barras" formControlName="codigo_barras">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="tipo" formControlName="tipo">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="ativo" formControlName="ativo">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="id_fornecedor" formControlName="id_fornecedor">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="id_grupo" formControlName="id_grupo">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="filial" formControlName="filial">
+                </mat-form-field>
+            </div> <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="preco_venda" formControlName="preco_venda">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="preco_venda_2" formControlName="preco_venda_2">
+                </mat-form-field>
+            </div>
+
+
+
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="preco_compra" formControlName="preco_compra">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="preco_custo" formControlName="preco_custo">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="preco_custo_medio" formControlName="preco_custo_medio">
+                </mat-form-field>
+            </div><div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="preco_custo_venda" formControlName="preco_custo_venda">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="preco_transferencias" formControlName="preco_transferencias">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="estoque_atual" formControlName="estoque_atual">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="estoque_maximo" formControlName="estoque_maximo">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="id_produto" formControlName="id_produto">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="name" formControlName="name">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="valor" formControlName="valor">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                    <mat-label>Percentual</mat-label>
+                    <input matInput id="quantidade" formControlName="quantidade">
+                </mat-form-field>
+            </div>
+
+
+           
+        </form>
+        <button (click)="salvar()" class="btn btn-success">
+            <mat-icon>save</mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>

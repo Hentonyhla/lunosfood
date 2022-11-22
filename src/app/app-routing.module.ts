@@ -22,12 +22,9 @@ import { AliqInterestaduaisNovoComponent } from './aliq-interestaduais/aliq-inte
 import { FuncionariosEditarComponent } from './funcionarios/funcionarios-editar/funcionarios-editar.component';
 import { FuncionariosListarComponent } from './funcionarios/funcionarios-listar/funcionarios-listar.component';
 import { FuncionariosNovoComponent } from './funcionarios/funcionarios-novo/funcionarios-novo.component';
-
-
-
-
-
-
+import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
+import { ClientesListarComponent } from './clientes/clientes-listar/clientes-listar.component';
+import { ClientesNovoComponent } from './clientes/clientes-novo/clientes-novo.component';
 
 const routes: Routes = [
   {path : '', component: HomeComponent},
@@ -59,6 +56,10 @@ const routes: Routes = [
   {path : 'funcionarios-list', component: FuncionariosListarComponent},
   {path : 'funcionarios-edit/:id', component : FuncionariosEditarComponent},
   {path : 'funcionarios-novo', component: FuncionariosNovoComponent}, 
+  //Clientes
+  {path : 'clientes-list', component : ClientesListarComponent},
+  {path : 'clientes-edit/:id', component: ClientesEditarComponent},
+  {path : 'clientes-novo', component: ClientesNovoComponent}, 
 
 ];
 
