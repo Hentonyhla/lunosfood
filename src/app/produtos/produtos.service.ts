@@ -11,6 +11,7 @@ const baseUrl = '/api/produtos'
 export class ProdutosService {
 
   constructor(private http: HttpClient, public snackBar: MatSnackBar) { }
+
   getAll(): Observable<Produtos[]>{
     return this.http.get<Produtos[]>(baseUrl);}
     get(id: any): Observable<Produtos> {

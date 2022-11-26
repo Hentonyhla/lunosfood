@@ -3,7 +3,7 @@ export interface Produtos{
     nome: string;
     descricao: string;
     cst: string;
-    codigoNCM: string;
+    codigoNcm: string;
     aliquota: string;
     cest: string;
     origem: string;
@@ -24,7 +24,8 @@ export interface Produtos{
     preco_custo_venda: string;
     preco_transferencias: string;
     estoque_atual: string;
-    estoque_maximo: string;
+    estoque_max: string;
+    estoque_min: string;
     id_produto: number;
     name: string;
     valor: string;

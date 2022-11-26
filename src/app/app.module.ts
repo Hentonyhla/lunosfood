@@ -25,8 +25,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
-
-
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -117,9 +118,10 @@ import { ClientesNovoComponent } from './clientes/clientes-novo/clientes-novo.co
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatRadioModule
-
-
+    MatRadioModule,
+    MatTabsModule,
+    MatAutocompleteModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },

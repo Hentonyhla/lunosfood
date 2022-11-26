@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientJsonpModule } from '@angular/common/http'
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +15,9 @@ export class GeraisService {
   buscaReceita(cnpj: string) {
     return this.http.jsonp(`https://receitaws.com.br/v1/cnpj/${cnpj}`, 'callback')
   }
-  buscaNCM(codigoNcm: string){
-    return this.http.get(`http://localhost:3000/listaNcm/${codigoNcm}`)
+  buscaNCM(codigoNcm: string) {
+    return this.http.get(`https://portalunico.siscomex.gov.br/classif/api/publico/nomenclatura/download/json/${codigoNcm}`)
   }
+
 }
 
