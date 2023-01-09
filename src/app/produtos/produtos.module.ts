@@ -6,9 +6,10 @@ import { ProdutosListarComponent } from './produtos-listar/produtos-listar.compo
 
 
 
+
 @NgModule({
   declarations: [
-    ProdutosEditarComponent
+    
   ],
   imports: [
     CommonModule

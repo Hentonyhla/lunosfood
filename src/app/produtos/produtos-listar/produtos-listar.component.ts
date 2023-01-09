@@ -1,18 +1,21 @@
-import {AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Produtos } from 'src/app/models/produtos.models';
 import { ProdutosService } from '../produtos.service';
+import { EstoquesService } from 'src/app/estoques.service';
+import { Estados } from 'src/app/models/estados.model';
+import { of, } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-produtos-listar',
   templateUrl: './produtos-listar.component.html',
   styleUrls: ['./produtos-listar.component.css']
 })
-export class ProdutosListarComponent implements OnInit, AfterViewInit{
-
-  displayedColumns: string[] = ['nome', 'descricao', 'preco', 'detalhes'];
+export class ProdutosListarComponent implements OnInit, AfterViewInit {
+  displayedColumns: any = ['nome', 'descricao', 'estoques', 'detalhes'];
   //dataSource;
   dataSource = new MatTableDataSource<Produtos>;
 
@@ -22,6 +25,7 @@ export class ProdutosListarComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.listarProdutos();
   }
+
   listarProdutos(): void {
     this.produtosService.getAll()
       .subscribe({
@@ -46,17 +50,17 @@ export class ProdutosListarComponent implements OnInit, AfterViewInit{
       this.dataSource.paginator.firstPage();
     }
   }
- 
-  delete(id){
 
-          this.produtosService.delete(id)
-            .subscribe(
-              result => {
-                this.produtosService.mostrarMensagem('O item selecionado foi excluído', false);
-                this.listarProdutos();
-              },
-              error => console.log(error)
-            )
-        }
+  delete(id) {
+
+    this.produtosService.delete(id)
+      .subscribe(
+        result => {
+          this.produtosService.mostrarMensagem('O item selecionado foi excluído', false);
+          this.listarProdutos();
+        },
+        error => console.log(error)
+      )
+  }
 
 }

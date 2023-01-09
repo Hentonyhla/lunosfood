@@ -1,1 +1,206 @@
-<p>produtos-editar works!</p>
+<mat-card class="card shadow p-3 mb-5 bg-white rounded">
+    <mat-card-title>
+        <h2 class="text-center title-card">Editar Produto</h2>
+        <a class="text-success float-right btn btn-lg rounded-circle rounded-lg" routerLink="/produtos-list">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+    </mat-card-title>
+
+    <mat-card-content>
+        <form #f="ngForm" [formGroup]="formulario">
+
+            <mat-tab-group animationDuration="0ms" mat-align-tabs="center">
+
+                <mat-tab label="Dados Básicos">
+
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column" class="mt-4">
+
+                        <mat-form-field fxFlex="20%" appearance="fill" class="mr-4" formGroupName="estoques">
+                            <mat-label>Filial</mat-label>
+                            <mat-select formControlName="filial">
+                                <mat-option *ngFor="let filial of filiais" [value]="filial.id">
+                                    {{filial.razao_social}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="40%" appearance="fill" class="mr-4">
+                            <mat-label>Nome</mat-label>
+                            <input matInput id="nome" formControlName="nome">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="40%" appearance="fill" class="mr-4">
+                            <mat-label>Descrição</mat-label>
+                            <input matInput id="descricao" formControlName="descricao">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                        <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                            <mat-label>Buscar NCM (Descrição)</mat-label>
+                            <input matInput id="Descricao_ncm" formControlName="Descricao_ncm" [(ngModel)]="Descricao_ncm"
+                                (ngModelChange)="Search()" (change)="Pesquisa()" value="{{Descricao_ncm}}">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="80%" appearance="fill" class="mr-4">
+                            <mat-label>Selecionar NCM</mat-label>
+                            <mat-select formControlName="codigoNcm">
+                                <mat-option *ngFor="let dados of ncm.slice(0, 200)" [value]="dados.codigoNcm"
+                                    [(ngModel)]="ncm">
+                                    Código: {{dados.codigoNcm}} - Descrição: {{dados.Descricao }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+
+                        <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                            <mat-label>Fornecedor</mat-label>
+                            <mat-select formControlName="id_fornecedor">
+                                <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.id">
+                                    {{fornecedor.razao_social}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                            <mat-label>Grupos</mat-label>
+                            <mat-select formControlName="id_grupo">
+                                <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">
+                                    {{grupo.nome}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                            <mat-label>CEST</mat-label>
+                            <input matInput id="cest" formControlName="cest" mask="00.000.00">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                            <mat-label>Unidade</mat-label>
+                            <input matInput id="unidade" formControlName="unidade">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="40%" appearance="fill" class="mr-4">
+                            <mat-label>Código de Barras</mat-label>
+                            <input matInput id="codigo_barras" formControlName="codigo_barras">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
+                            <mat-label>Aliquota</mat-label>
+                            <mat-select formControlName="aliquota">
+                                <mat-option *ngFor="let aliquota of aliquotas" value="{{aliquota.id}}">
+                                    {{aliquota.percentual}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                        <mat-form-field fxFlex="50%" appearance="fill" class="mr-4">
+                            <mat-label>Origem</mat-label>
+                            <mat-select formControlName="origem">
+                                <mat-option *ngFor="let origem of origens" value="{{origem.codigo_icms_origem}}">
+                                    {{origem.codigo_icms_origem}} : {{origem.desc_icms_origem}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="50%" appearance="fill" class="mr-4">
+                            <mat-label>CSOSN</mat-label>
+                            <mat-select formControlName="csosn">
+                                <mat-option *ngFor="let csosns of csosns" value="{{csosns.codigo_csosn}}">
+                                    {{csosns.codigo_csosn}} : {{csosns.nome_csosn}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                        <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                            <mat-label>Ativo</mat-label>
+                            <mat-select formControlName="ativo">
+                                <mat-option class="mt-6" value="1">Sim</mat-option>
+                                <mat-option class="mt-6" value="2">Não</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="80%" appearance="fill" class="mr-4">
+                            <mat-label>Observacão</mat-label>
+                            <textarea matInput formControlName="observacao"></textarea>
+                        </mat-form-field>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Estoques e Preços">
+                    <div formGroupName="estoques">
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column" class="mt-4">
+                            <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                                <mat-label>Preço de Venda</mat-label>
+                                <input matInput id="preco_venda" formControlName="preco_venda" mask="separator.2"
+                                    thousandSeparator="." separatorLimit="100000000000">
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                                <mat-label>Preço de Venda 2</mat-label>
+                                <input matInput id="preco_venda_2" formControlName="preco_venda_2" mask="separator.2"
+                                    thousandSeparator="." separatorLimit="100000000000">
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                                <mat-label>Preço de Compra</mat-label>
+                                <input matInput id="preco_compra" formControlName="preco_compra" mask="separator.2"
+                                    thousandSeparator="." separatorLimit="100000000000">
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                                <mat-label>Preço de Custo</mat-label>
+                                <input matInput id="preco_custo" formControlName="preco_custo" mask="separator.2"
+                                    thousandSeparator="." separatorLimit="100000000000">
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                                <mat-label>Preço de Custo Médio</mat-label>
+                                <input matInput id="preco_custo_medio" formControlName="preco_custo_medio"
+                                    mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
+                            <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                                <mat-label>Preço Custo de Venda</mat-label>
+                                <input matInput id="preco_custo_venda" formControlName="preco_custo_venda"
+                                    mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                                <mat-label>Preço Transferência</mat-label>
+                                <input matInput id="preco_transferencias" formControlName="preco_transferencias"
+                                    mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                                <mat-label>Estoque Atual</mat-label>
+                                <input matInput id="estoque_atual" formControlName="estoque_atual" thousandSeparator="."
+                                    mask="separator.4">
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                                <mat-label>Estoque Máximo</mat-label>
+                                <input matInput id="estoque_max" formControlName="estoque_max" thousandSeparator="."
+                                    mask="separator.4">
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
+                                <mat-label>Estoque Minímo</mat-label>
+                                <input matInput id="estoque_min" formControlName="estoque_min" thousandSeparator="."
+                                    mask="separator.4">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </form>
+        <button (click)="salvar()" class="btn btn-success">
+            <mat-icon>save</mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>

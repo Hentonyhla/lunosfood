@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ProdutosService } from '../produtos.service';
 import { Produtos } from 'src/app/models/produtos.models';
-import { Composicoes } from 'src/app/models/composicoes.model';
 import { Estoques } from 'src/app/models/estoques.model';
 import { Origens } from 'src/app/models/origens.model';
 import { OrigensService } from 'src/app/origens.service';
@@ -19,6 +18,8 @@ import { Ncm } from 'src/app/models/ncm.model';
 import { NcmService } from 'src/app/ncm.service';
 import { Aliquotas } from 'src/app/models/aliquotas.model';
 import { AliquotasService } from 'src/app/aliquotas/aliquotas.service';
+import { debounceTime, filter, map, Observable, startWith, switchMap } from 'rxjs';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-produtos-novo',
@@ -26,20 +27,29 @@ import { AliquotasService } from 'src/app/aliquotas/aliquotas.service';
   styleUrls: ['./produtos-novo.component.css']
 })
 export class ProdutosNovoComponent implements OnInit {
+  selectComponent;
 
   formulario!: FormGroup;
-  produtos!: Produtos;
-  grupos: Grupos[] =[]
-  composicoes!: FormArray;
+  produtos: Produtos[] = [];
+  grupos: Grupos[] = []
   filiais!: Filiais[];
   aliquotas: Aliquotas[] = [];
   razao_social!: string;
   codigo_csosn!: number;
   ncm: Ncm[] = [];
-  csosns!: Csosns[];
+  csosns: Csosns[] = [];
   origens: Origens[] = [];
-  Descricao: any;
+  codigoNcm: any;
+  nome: any;
   fornecedores: Fornecedores[] = [];
+
+  //filtros
+  filteredNcm!: Observable<Ncm[]>;
+  filteredFornecedores!: Observable<Fornecedores[]>;
+  filteredGrupos!: Observable<Grupos[]>;
+  filteredFiliais!: Observable<Filiais[]>;
+  filteredCsosn!: Observable<Csosns[]>;
+  filteredOrigens!: Observable<Origens[]>;
 
   constructor(private produtosService: ProdutosService,
     private geraisService: GeraisService,
@@ -50,7 +60,8 @@ export class ProdutosNovoComponent implements OnInit {
     private gruposService: GruposService,
     private origensService: OrigensService,
     private aliquotasService: AliquotasService,
-    private ncmService: NcmService) { }
+    private ncmService: NcmService,
+    ) { }
 
   ngOnInit(): void {
     this.inicializarFormulario();
@@ -61,20 +72,40 @@ export class ProdutosNovoComponent implements OnInit {
     this.origensService.getAll().subscribe(data => this.origens = data);
     this.aliquotasService.getAll().subscribe(data => this.aliquotas = data);
 
+    this.selectComponent.overlayDir.positions = [
+      {
+        originX: 'center',
+        originY: 'bottom',
+        overlayX: 'center',
+        overlayY: 'top'
+      }
+    ];
+    
+    this.filteredNcm = this.formulario.controls['codigoNcm'].valueChanges.pipe(
+      startWith(""),
+      debounceTime(300),
+      switchMap(value => this.NcmFilter(value)))
   }
 
-  Pesquisa() {
-    this.ncmService.listNCM().subscribe(data => this.ncm = data);
+  //Funções de Filtro
+  NcmFilter(value) {
+    return this.ncmService.getAll().pipe(
+      map(response =>
+        response.filter(
+          option => {
+          return option.Descricao.indexOf(value) === 0;
+        })
+      )
+    );
+
   }
-  Search() {
-    if (this.Descricao == "") {
-      this.Pesquisa();
-    } else {
-      this.ncm = this.ncm.filter(res => {
-        return res.Descricao.toLocaleLowerCase().match(this.Descricao.toLocaleLowerCase());
-      })
-    }
+
+  getNcmText(option) {
+    return option.Descricao;
   }
+
+
+  ///////////////////////////////////
   inicializarFormulario() {
     this.formulario = this.formBuilder.group({
 
@@ -104,28 +135,8 @@ export class ProdutosNovoComponent implements OnInit {
       estoque_atual: new FormControl(''),
       estoque_max: new FormControl(''),
       estoque_min: new FormControl(''),
-      Descricao: new FormControl(''),
-      composicoes: new FormArray([
-
-      ]),
-      name: new FormControl(''),
-      valor: new FormControl(''),
-      quantidade: new FormControl(''),
-
+      //Descricao: new FormControl(''),
     });
-
-  }
-  AddNewComp() {
-    this.composicoes = this.formulario.get("composicoes") as FormArray;
-    this.composicoes.push(this.genRow())
-  }
-
-  genRow() {
-    return new FormGroup({
-      name: new FormControl(''),
-      valor: new FormControl(''),
-      quantidade: new FormControl(''),
-    })
   }
   salvar() {
 

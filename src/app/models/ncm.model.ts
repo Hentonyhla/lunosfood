@@ -1,5 +1,5 @@
 export interface Ncm {
-    Codigo: string;
+    codigoNcm: string;
     Descricao: string;
 
 }

@@ -17,12 +17,18 @@
 
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Filial</mat-label>
-                            <mat-select [(ngModel)]="razao_social" formControlName="filial">
-                                <mat-option *ngFor="let filiais of filiais" value="{{filiais.id}}">
+                            <input type="text"
+                                   placeholder="Buscar NCM"
+                                   matInput
+                                   formControlName="filial"
+                                   [matAutocomplete]="auto" >
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let filiais of filiais" value="{{filiais.id}} : {{filiais.razao_social}}">
                                     {{filiais.razao_social}}
                                 </mat-option>
-                            </mat-select>
+                            </mat-autocomplete>
                         </mat-form-field>
+
 
                         <mat-form-field fxFlex="40%" appearance="fill" class="mr-4">
                             <mat-label>Nome</mat-label>
@@ -33,28 +39,28 @@
                             <mat-label>Descrição</mat-label>
                             <input matInput id="descricao" formControlName="descricao">
                         </mat-form-field>
-
                     </div>
 
                     <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
-                        <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
-                            <mat-label>Descrição NCM</mat-label>
-                            <input matInput id="Descricao" formControlName="Descricao" [(ngModel)]="Descricao"
-                                (ngModelChange)="Search()" (focus)="Pesquisa()">
-                        </mat-form-field>
 
-                        <mat-form-field fxFlex="80%" appearance="fill" class="mr-4">
+                        <mat-form-field fxFlex="80%" appearance="fill" class="mr-4 ">
                             <mat-label>NCM</mat-label>
-                            <mat-select formControlName="codigoNcm">
-                                <mat-option *ngFor="let dados of ncm.slice(0, 200)" value="{{dados.Codigo}}">
-                                    {{dados.Codigo}} : {{dados.Descricao }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                            <input type="text"
+                                   placeholder="Buscar NCM"
+                                   matInput
+                                   formControlName="codigoNcm"
+                                   [matAutocomplete]="auto" >
+                            <mat-autocomplete #auto="matAutocomplete"> 
+                              <mat-option *ngFor="let option of filteredNcm | async" [value]="option.codigoNcm">
+                                {{option.codigoNcm}} : {{option.Descricao }}
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+
                     </div>
 
                     <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
-                        <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
+                        <mat-form-field fxFlex="20%" appearance="outline" class="mr-4">
                             <mat-label>Fornecedor</mat-label>
                             <mat-select formControlName="id_fornecedor">
                                 <mat-option *ngFor="let fornecedor of fornecedores" value="{{fornecedor.id}}">
@@ -62,6 +68,8 @@
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
+
+                        
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Grupos</mat-label>
                             <mat-select formControlName="id_grupo">
@@ -89,13 +97,11 @@
                         <mat-form-field fxFlex="10%" appearance="fill" class="mr-4">
                             <mat-label>Aliquota</mat-label>
                             <mat-select formControlName="origem">
-                                <mat-option *ngFor="let aliquota of aliquotas" value="{{aliquota.percentual}}">
+                                <mat-option  *ngFor="let aliquota of aliquotas" value="{{aliquota.percentual}}">
                                     {{aliquota.percentual}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                       
-
 
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
@@ -136,110 +142,67 @@
                     <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column" class="mt-4">
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Preço de Venda</mat-label>
-                            <input matInput id="preco_venda" formControlName="preco_venda" mask="separator.2"
+                            <input matInput id="preco_venda" formControlName="preco_venda" prefix="R$ " mask="separator.2"
                                 thousandSeparator="." separatorLimit="100000000000">
                         </mat-form-field>
 
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Preço de Venda 2</mat-label>
-                            <input matInput id="preco_venda_2" formControlName="preco_venda_2" mask="separator.2"
+                            <input matInput id="preco_venda_2" formControlName="preco_venda_2" prefix="R$ " mask="separator.2"
                                 thousandSeparator="." separatorLimit="100000000000">
                         </mat-form-field>
 
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Preço de Compra</mat-label>
-                            <input matInput id="preco_compra" formControlName="preco_compra" mask="separator.2"
+                            <input matInput id="preco_compra" formControlName="preco_compra" prefix="R$ " mask="separator.2"
                                 thousandSeparator="." separatorLimit="100000000000">
                         </mat-form-field>
 
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Preço de Custo</mat-label>
-                            <input matInput id="preco_custo" formControlName="preco_custo" mask="separator.2"
+                            <input matInput id="preco_custo" formControlName="preco_custo" prefix="R$ " mask="separator.2"
                                 thousandSeparator="." separatorLimit="100000000000">
                         </mat-form-field>
 
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Preço de Custo Médio</mat-label>
                             <input matInput id="preco_custo_medio" formControlName="preco_custo_medio"
-                                mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
+                            prefix="R$ " mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
                         </mat-form-field>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Preço Custo de Venda</mat-label>
                             <input matInput id="preco_custo_venda" formControlName="preco_custo_venda"
-                                mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
+                            prefix="R$ " mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
                         </mat-form-field>
 
                         <mat-form-field fxFlex="20%" appearance="fill" class="mr-4">
                             <mat-label>Preço Transferência</mat-label>
                             <input matInput id="preco_transferencias" formControlName="preco_transferencias"
-                                mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
+                            prefix="R$" mask="separator.2" thousandSeparator="." separatorLimit="100000000000">
                         </mat-form-field>
 
                         <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
                             <mat-label>Estoque Atual</mat-label>
                             <input matInput id="estoque_atual" formControlName="estoque_atual" thousandSeparator="."
-                                mask="separator.4">
+                             mask="separator.4">
                         </mat-form-field>
 
                         <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
                             <mat-label>Estoque Máximo</mat-label>
                             <input matInput id="estoque_max" formControlName="estoque_max" thousandSeparator="."
-                                mask="separator.4">
+                             mask="separator.4">
                         </mat-form-field>
 
                         <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
                             <mat-label>Estoque Minímo</mat-label>
                             <input matInput id="estoque_min" formControlName="estoque_min" thousandSeparator="."
-                                mask="separator.4">
+                             mask="separator.4">
                         </mat-form-field>
                     </div>
-
-
-
                 </mat-tab>
-
-                <mat-tab label="Composição">
-
-                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
-                        <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
-                            <mat-label>Percentual</mat-label>
-                            <input matInput id="id_produto" formControlName="id_produto">
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
-                        <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
-                            <mat-label>Percentual</mat-label>
-                            <input matInput id="name" formControlName="name">
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
-                        <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
-                            <mat-label>Percentual</mat-label>
-                            <input matInput id="valor" formControlName="valor">
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column">
-                        <mat-form-field fxFlex="100%" appearance="fill" class="mr-4">
-                            <mat-label>Percentual</mat-label>
-                            <input matInput id="quantidade" formControlName="quantidade">
-                        </mat-form-field>
-                    </div>
-
-                </mat-tab>
-
             </mat-tab-group>
-
-
-
-
-
-
-
         </form>
         <button (click)="salvar()" class="btn btn-success">
             <mat-icon>save</mat-icon>

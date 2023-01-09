@@ -2,3 +2,6 @@
     max-width: 400px;
     margin: auto;
   }
+.myPanelClass{
+  margin-top: 600px !important;
+}

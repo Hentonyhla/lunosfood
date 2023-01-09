@@ -1,4 +1,4 @@
-export interface Produtos{
+export interface Produtos {
     id: number;
     nome: string;
     descricao: string;
@@ -13,22 +13,26 @@ export interface Produtos{
     codigo_barras: string;
     tipo: string;
     ativo: string;
-    id_fornecedor: string;
-    id_grupo: string;
-    filial: string;
-    preco_venda: string;
-    preco_venda_2: string;
-    preco_compra: string;
-    preco_custo: string;
-    preco_custo_medio: string;
-    preco_custo_venda: string;
-    preco_transferencias: string;
-    estoque_atual: string;
-    estoque_max: string;
-    estoque_min: string;
-    id_produto: number;
-    name: string;
-    valor: string;
-    quantidade: string;
-    id_produto_comp: number;
+    id_fornecedor: number;
+    id_grupo: number;
+    estoques: {
+        filial: string;
+        preco_venda: number;
+        preco_venda_2: number;
+        preco_compra: number;
+        preco_custo: number;
+        preco_custo_medio: number;
+        preco_custo_venda: number;
+        preco_transferencias: number;
+        estoque_atual: number;
+        estoque_max: number;
+        estoque_min: number;
+        id_produto: number;
+        createdAt: false;
+        updatedAt: false;
+    }
+
+
+
 }
+
